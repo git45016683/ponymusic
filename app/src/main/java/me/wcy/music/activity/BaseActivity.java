@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import me.wcy.music.R;
+import me.wcy.music.service.MediaSessionManager;
 import me.wcy.music.service.PlayService;
 import me.wcy.music.storage.preference.Preferences;
 import me.wcy.music.utils.PermissionReq;
@@ -52,6 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         handler = new Handler(Looper.getMainLooper());
         bindService();
+//        MediaSessionManager.get().initApp(this.getApplication());
     }
 
     @StyleRes

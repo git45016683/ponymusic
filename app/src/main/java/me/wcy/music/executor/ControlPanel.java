@@ -3,6 +3,7 @@ package me.wcy.music.executor;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -44,10 +45,25 @@ public class ControlPanel implements View.OnClickListener, OnPlayerEventListener
         onChange(AudioPlayer.get().getPlayMusic());
     }
 
+    public void Send2IVI(int isEnter) {
+        Context context = vPlayBarPlaylist.getContext();
+        int entermode = isEnter;
+        if (entermode!=0 &&entermode !=1) {
+            Log.v("FMSTATE","not a valid mode!!!");
+            return;
+        }
+        Intent intent=new Intent("com.linkswell.sxmradio.app");
+        intent.putExtra("fmstate",entermode);
+        context.sendBroadcast(intent);
+
+        Log.v("FMSTATE","send com.linkswell.sxmradio.app.fmstat:"+isEnter);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_play_bar_play:
+                Send2IVI(1);
                 AudioPlayer.get().playPause();
                 break;
             case R.id.iv_play_bar_next:

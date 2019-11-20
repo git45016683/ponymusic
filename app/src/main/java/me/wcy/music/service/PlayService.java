@@ -29,7 +29,8 @@ public class PlayService extends Service {
         super.onCreate();
         Log.i(TAG, "onCreate: " + getClass().getSimpleName());
         AudioPlayer.get().init(this);
-        MediaSessionManager.get().init(this);
+//        MediaSessionManager.get().init(this);
+//        MediaSessionManager.get().initApp(this.getApplication());
         Notifier.get().init(this);
         QuitTimer.get().init(this);
     }
